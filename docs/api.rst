@@ -516,19 +516,19 @@ The config resource allows you to inspect the cluster-level configuration values
 
    **Example request**:
 
-	.. sourcecode:: http
+   .. sourcecode:: http
 
-	   GET /config/test HTTP/1.1
-	   Host: schemaregistry.example.com
-	   Accept: application/vnd.schemaregistry.v1+json, application/vnd.schemaregistry+json, application/json
+      GET /config/test HTTP/1.1
+      Host: schemaregistry.example.com
+      Accept: application/vnd.schemaregistry.v1+json, application/vnd.schemaregistry+json, application/json
 
    **Example response**:
 
    .. sourcecode:: http
 
-	  HTTP/1.1 200 OK
-	  Content-Type: application/vnd.schemaregistry.v1+json
+     HTTP/1.1 200 OK
+     Content-Type: application/vnd.schemaregistry.v1+json
 
-	  {
-	     "compatibility": "FULL"
-	  }
+     {
+        "compatibility": "FULL"
+     }
