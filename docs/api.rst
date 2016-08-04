@@ -211,7 +211,7 @@ The subjects resource provides a list of all registered subjects in your schema 
    When there are multiple instances of schema registry running in the same cluster, the schema registration request will be forwarded to one of the instances designated as the master. If the master is not available, the client will get an error code indicating that the forwarding has failed.
 
    :param string subject: Subject under which the schema will be registered
-   :reqjson schema: The Avro schema string
+   :<json string schema: The Avro schema string
 
    :>json int version: Version of the registred schema
 
@@ -264,7 +264,7 @@ The subjects resource provides a list of all registered subjects in your schema 
    Check if a schema has already been registered under the specified subject. If so, this returns the schema string along with its globally unique identifier, its version under this subject and the subject name.  
 
    :param string subject: Subject under which the schema will be registered
-   :reqjson schema: The Avro schema string
+   :<json string schema: The Avro schema string
 	
    :>json string subject: Name of the subject that this schema is registered under
    :>json int id: Globally unique identifier of the schema
@@ -343,7 +343,7 @@ The compatibility resource allows the user to test schemas for compatibility aga
 
    :param string subject: Subject of the schema version against which compatibility is to be tested
    :param versionId version: Version of the subject's schema against which compatibility is to be tested. Valid values for versionId are between [1,2^31-1] or the string "latest". "latest" checks compatibility of the input schema with the last registered schema under the specified subject
-   :reqjson schema: The Avro schema string
+   :<json string schema: The Avro schema string
    
    :>json boolean is_compatible: True, if compatible. False otherwise
 	
