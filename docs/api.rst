@@ -213,6 +213,8 @@ The subjects resource provides a list of all registered subjects in your schema 
    :param string subject: Subject under which the schema will be registered
    :reqjson schema: The Avro schema string
 
+   :>json int version: Version of the registred schema
+
    :statuscode 409: Incompatible Avro schema
    :statuscode 422: 
       * Error code 42201 -- Invalid Avro schema
@@ -262,6 +264,7 @@ The subjects resource provides a list of all registered subjects in your schema 
    Check if a schema has already been registered under the specified subject. If so, this returns the schema string along with its globally unique identifier, its version under this subject and the subject name.  
 
    :param string subject: Subject under which the schema will be registered
+   :reqjson schema: The Avro schema string
 	
    :>json string subject: Name of the subject that this schema is registered under
    :>json int id: Globally unique identifier of the schema
@@ -340,7 +343,8 @@ The compatibility resource allows the user to test schemas for compatibility aga
 
    :param string subject: Subject of the schema version against which compatibility is to be tested
    :param versionId version: Version of the subject's schema against which compatibility is to be tested. Valid values for versionId are between [1,2^31-1] or the string "latest". "latest" checks compatibility of the input schema with the last registered schema under the specified subject
-    	
+   :reqjson schema: The Avro schema string
+   
    :>json boolean is_compatible: True, if compatible. False otherwise
 	
    :statuscode 404:
@@ -403,6 +407,8 @@ The config resource allows you to inspect the cluster-level configuration values
 
    :<json string compatibility: New global compatibility level. Must be one of NONE, FULL, FORWARD, BACKWARD
 
+   :>json string compatibility: New global compatibility level. Will be one of NONE, FULL, FORWARD, BACKWARD
+
    :statuscode 422: 
       * Error code 42203 -- Invalid compatibility level
    :statuscode 500:
@@ -434,7 +440,7 @@ The config resource allows you to inspect the cluster-level configuration values
 
    Get global compatibility level.
 
-   :>json string compatibility: New global compatibility level. Will be one of NONE, FULL, FORWARD, BACKWARD
+   :>json string compatibility: Current global compatibility level. Will be one of NONE, FULL, FORWARD, BACKWARD
 
    :statuscode 500:
       * Error code 50001 -- Error in the backend data store
@@ -464,6 +470,8 @@ The config resource allows you to inspect the cluster-level configuration values
 
    :param string subject: Name of the subject
    :<json string compatibility: New global compatibility level. Must be one of NONE, FULL, FORWARD, BACKWARD
+
+   :>json string compatibility: New global compatibility level. Will be one of NONE, FULL, FORWARD, BACKWARD
 
    :statuscode 422: 
       * Error code 42203 -- Invalid compatibility level
@@ -499,7 +507,8 @@ The config resource allows you to inspect the cluster-level configuration values
    Get compatibility level for a subject.
 
    :param string subject: Name of the subject
-   :>json string compatibility: New global compatibility level. Will be one of NONE, FULL, FORWARD, BACKWARD
+   
+   :>json string compatibility: Current global compatibility level. Will be one of NONE, FULL, FORWARD, BACKWARD
   
    :statuscode 404: Subject not found
    :statuscode 500:
